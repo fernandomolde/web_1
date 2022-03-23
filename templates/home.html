@@ -1,0 +1,20 @@
+{%extends 'base.html'%}
+
+{%block title%}Home{%endblock%}
+
+{%block content%}
+    <h1>Hola Mundo de las plantillas</h1>   
+
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Número</th>
+            <th>Día</th>
+        </tr>
+        {% for fila in datos %}
+        <tr>
+            <td>{{fila[0]}}</td> <td>{{fila[1]}}</td> <td>{{fila[2]}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+ {%endblock%}
