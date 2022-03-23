@@ -8,11 +8,12 @@
     <title>WEB_1 | {%block title%}{%endblock%}</title>
 </head>
 <body>
-    <header style="padding: 5%;
-    background-color:cornflowerblue;
-    color:aliceblue; 
-    font-size: xx-large;
-    text-align:center;"><h1>WEB_1</h1></header>
+    {%include 'inc_header.html'%}
+    
     {%block content%}{%endblock%}
+
+    {%include 'inc_footer.html'%}
+
 </body>
+
 </html>
