@@ -1,5 +1,5 @@
 import os
-from bottle import route,run,TEMPLATE_PATH,jinja2_view,static_file,request
+from bottle import route,run,TEMPLATE_PATH,jinja2_view,static_file,request,redirect
 import sqlite3
 
 BASE_DATOS = os.path.join(os.path.dirname(__file__),'personas.db')
@@ -14,10 +14,13 @@ def server_static(filename):
 @route('/')
 @jinja2_view('home.html') #Aqui le decimos como se llama el archivo
 def hola():
-    return {'datos':[
-        ('Teo',1,'lunes'),
-        ('Jose',2,'martes'),
-        ('Pau',3,'Jueves')]}
+    cnx = sqlite3.connect(BASE_DATOS)
+    consulta = "select id,nombre,apellidos,dni from persona"
+
+    cursor = cnx.execute(consulta)
+    filas = cursor.fetchall() #Trae todas las filas para procesarlos
+    cnx.close()
+    return {"datos": filas}
 
 @route('/formulario')
 @jinja2_view('formulario.html')
@@ -35,7 +38,7 @@ def guardar():
     cnx.execute(consulta,(nombre,apellidos,dni))
     cnx.commit()
     cnx.close()
-    
+    redirect('/') #Esto lo que hace que vuelve a la raiz
 
 
 
