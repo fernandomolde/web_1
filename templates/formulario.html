@@ -51,15 +51,15 @@
 
 <form action="/guardar" method="post">
     
-  <h2>Datos Personales</h2>
-  <input type="hidden" id = "id" name ="id">
-  <label for="nombre">Nombre:</label>
-  <input type="text" id="nombre" name="nombre"><br><br>
-  <label for="apellidos">Apellidos:</label>
-  <input type="text" id="apellidos" name="apellidos"><br><br>
-  <label for="dni">DNI:</label>
-  <input type="text" id="dni" name="dni"><br><br>
-  <hr><br>
+    <h2>Datos personales</h2>
+    <input type="hidden" id ="id" name="id" value="{% if datos %}{{datos[0]}} {%endif%}">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" value="{% if datos %}{{datos[1]}} {%endif%}"><br><br>
+    <label for="apellidos">Apellidos:</label>
+    <input type="text" id="apellidos" name="apellidos" value="{% if datos %}{{datos[2]}} {%endif%}"><br><br>
+    <label for="dni">D.N.I:</label>
+    <input type="text" id="dni" name="dni" value="{% if datos %}{{datos[3]}} {%endif%}"><br><br>    
+    <hr><br>
  
   <input type="submit" value="Submit">
 

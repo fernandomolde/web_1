@@ -22,20 +22,40 @@ def hola():
     cnx.close()
     return {"datos": filas}
 
-@route('/formulario')
+@route('/editar')
+@route('/editar/<id:int>')
 @jinja2_view('formulario.html')
-def mi_form():
-    return {}
+def mi_form(id=None):
+    if id is None:
+        return {}
+    else:
+        cnx = sqlite3.connect(BASE_DATOS)
+        consulta = "select id,nombre,apellidos,dni from persona where id = ?"
+        cursor = cnx.execute(consulta,(id,)) #La coma despues del ID,dice que es una tupla
+        filas = cursor.fetchone() # Obtiene 1 fila para procesarla
+        cnx.close()
+
+        return {'datos':filas}
 
 @route('/guardar', method='POST')
 def guardar(): 
     nombre = request.POST.nombre
     apellidos = request.POST.apellidos
     dni = request.POST.dni
-     
+    id = request.POST.id
     cnx = sqlite3.connect(BASE_DATOS)
-    consulta = "insert into persona(nombre,apellidos,dni) values (?,?,?)"
-    cnx.execute(consulta,(nombre,apellidos,dni))
+
+
+    if id =='': #Alta
+
+        consulta = "insert into persona(nombre, apellidos,dni) values (?,?,?)"
+        cnx.execute(consulta,(nombre,apellidos,dni,))
+
+    else:#Actualizacion
+         
+        consulta = "update persona set nombre = ?, apellidos = ?, dni =? where id =?"
+        cnx.execute(consulta,(nombre,apellidos,dni,id))
+        
     cnx.commit()
     cnx.close()
     redirect('/') #Esto lo que hace que vuelve a la raiz
