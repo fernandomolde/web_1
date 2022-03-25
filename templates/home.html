@@ -19,9 +19,6 @@
     </table>
 
 
-    
-        
-        
     <select name="" id="">
         {% for fila in datos %}
             <option value="{{fila[1]}}" {%if fila[1] == 3 %} selected="true" {%endif%}>{{fila[0]}}</option>
@@ -37,5 +34,13 @@
     <label for="dato{{fila[1]}}">{{fila[0]}}</label><br>
     {%endfor%} 
 </p>
+
+<p>
+{% for fila in datos %}
+<input type="checkbox" name="persona{{fila[1]}}" value="{{fila[1]}}">
+<label for="persona{{fila[1]}}">{{fila[0]}}</label><br>
+{%endfor%} 
+</p>
+
 
 {%endblock%}

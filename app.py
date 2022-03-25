@@ -1,5 +1,9 @@
 import os
-from bottle import route,run,TEMPLATE_PATH,jinja2_view,static_file
+from bottle import route,run,TEMPLATE_PATH,jinja2_view,static_file,request
+import sqlite3
+
+BASE_DATOS = os.path.join(os.path.dirname(__file__),'personas.db')
+
 #esto le indica a template como se llama la carpeta
 TEMPLATE_PATH.append(os.path.join(os.path.dirname(__file__),'templates'))
 
@@ -14,6 +18,24 @@ def hola():
         ('Teo',1,'lunes'),
         ('Jose',2,'martes'),
         ('Pau',3,'Jueves')]}
+
+@route('/formulario')
+@jinja2_view('formulario.html')
+def mi_form():
+    return {}
+
+@route('/guardar', method='POST')
+def guardar(): 
+    nombre = request.POST.nombre
+    apellidos = request.POST.apellidos
+    dni = request.POST.dni
+     
+    cnx = sqlite3.connect(BASE_DATOS)
+    consulta = "insert into persona(nombre,apellidos,dni) values (?,?,?)"
+    cnx.execute(consulta,(nombre,apellidos,dni))
+    cnx.commit()
+    cnx.close()
+    
 
 
 
