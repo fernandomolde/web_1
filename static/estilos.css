@@ -7,14 +7,19 @@ header,footer{
     color:aliceblue; 
     font-size: xx-large;
     text-align:center;
+    
 }
 
 nav ul{
 
-    list-style: none;    
+    list-style: none;  
+    background-position: center; 
+   
 }
 
 nav ul li{
     display: inline-block;
-
+    color: aquamarine;
+    
 }
+
