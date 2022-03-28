@@ -7,6 +7,7 @@
     <th>Nombre</th>
     <th>Apellidos</th>
     <th>dni</th>
+    <th>Ocupación</th>
     <th>Opciones</th>
   </tr>
   {% for fila in datos %}
@@ -15,6 +16,7 @@
     <td>{{fila[1]}}</td>
     <td>{{fila[2]}}</td>
     <td>{{fila[3]}}</td>
+    <td>{{fila[4]}}</td>
     <td>
       <button><a href="/editar/{{fila[0]}}">Editar</a></button>
       <button><a href="/borrar/{{fila[0]}}">Borrar</a></button>
