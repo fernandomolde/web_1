@@ -69,7 +69,7 @@ def borrar(id=None):
         consulta = "DELETE FROM persona where id = " + str(id)
         cnx.execute(consulta)
         cnx.commit()
-        cnx.close()
+        cnx.close()                     # Codigo para borrar
     redirect('/')
 
 run(host='localhost',port=8080,debug=True)
