@@ -67,6 +67,7 @@ def borrar(id=None):
     else:
         cnx = sqlite3.connect(BASE_DATOS)
         consulta = "DELETE FROM persona where id = " + str(id)
+        # consulta = f'delete from persona where id ="{id}"'
         cnx.execute(consulta)
         cnx.commit()
         cnx.close()                     # Codigo para borrar
