@@ -1,23 +1,26 @@
-{%extends 'base.html'%}
+{%extends 'base.html'%} {%block title%}Home{%endblock%} {%block content%}
+<h1>Hola Mundo de las plantillas</h1>
 
-{%block title%}Home{%endblock%}
-
-{%block content%}
-    <h1>Hola Mundo de las plantillas</h1>   
-
-    <table>
-        <tr>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Apellidos</th>
-            <th>dni</th>
-        </tr>
-        {% for fila in datos %}
-        <tr>
-            <td>{{fila[0]}}</td><td>{{fila[1]}}</td> <td>{{fila[2]}}</td> <td>{{fila[3]}}</td>
-        </tr>
-        {%endfor%}
-    </table>
- 
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Nombre</th>
+    <th>Apellidos</th>
+    <th>dni</th>
+    <th>Opciones</th>
+  </tr>
+  {% for fila in datos %}
+  <tr>
+    <td>{{fila[0]}}</td>
+    <td>{{fila[1]}}</td>
+    <td>{{fila[2]}}</td>
+    <td>{{fila[3]}}</td>
+    <td>
+      <button><a href="/editar/{{fila[0]}}">Editar</a></button>
+      <button><a href="/borrar/{{fila[0]}}">Borrar</a></button>
+    </td>
+  </tr>
+  {%endfor%}
+</table>
 
 {%endblock%}

@@ -60,6 +60,16 @@ def guardar():
     cnx.close()
     redirect('/') #Esto lo que hace que vuelve a la raiz
 
-
+@route('/borrar/<id:int>')
+def borrar(id=None):
+    if id is None:
+        return {}
+    else:
+        cnx = sqlite3.connect(BASE_DATOS)
+        consulta = "DELETE FROM persona where id = " + str(id)
+        cnx.execute(consulta)
+        cnx.commit()
+        cnx.close()
+    redirect('/')
 
 run(host='localhost',port=8080,debug=True)
