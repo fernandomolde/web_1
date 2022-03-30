@@ -15,8 +15,7 @@ def server_static(filename):
 @jinja2_view('home.html') #Aqui le decimos como se llama el archivo
 def hola():
     cnx = sqlite3.connect(BASE_DATOS)
-    consulta = "select id,nombre,apellidos,dni,id_ocupacion from persona"
-
+    consulta = "select p.id ,p.nombre,p.apellidos,p.dni,to2.descripcion from persona p left join T_ocupacion to2 on to2.id = p.id_ocupacion"
     cursor = cnx.execute(consulta)
     filas = cursor.fetchall() #Trae todas las filas para procesarlos
     cnx.close()
@@ -56,7 +55,7 @@ def guardar():
         consulta = "insert into persona(nombre, apellidos,dni,id_ocupacion) values (?,?,?,?)"
         cnx.execute(consulta,(nombre,apellidos,dni,ocupacion))
 
-    else:#Actualizacion
+    else: #Actualizacion
          
         consulta = "update persona set nombre = ?, apellidos = ?, dni =?, id_ocupacion=? where id =?"
         cnx.execute(consulta,(nombre,apellidos,dni,ocupacion,id))

@@ -63,12 +63,30 @@
     <select id="ocupacion" name="ocupacion">
       <option value="-1">Seleccione ocupación</option>
       {%for o in ocupaciones%}
-        <option value="{{o[0]}}">{{o[1]}}</option>
+        <option value="{{o[0]}}" {%if (datos) and (datos[4] == o[0]) %}selected {%endif%}>{{o[1]}}</option>
       {%endfor%}
     </select>
       <br><br>  
-    <hr><br>
- 
+      <hr><br>
+      <h2>Estado Civil</h2>
+      <input type="radio" id="dato1" name="age" value="1">
+      <label for="dato1">Soltero</label><br>
+
+      <input type="radio" id="dato2" name="age" value="2">
+      <label for="dato2">Casado</label><br>
+
+      <input type="radio" id="dato3" name="age" value="3">
+      <label for="dato3">Tres</label><br>
+
+      <hr><br>
+      <h2>Vehiculos</h2>
+      <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+      <label for="vehicle1"> I have a bike</label><br>
+      <input type="checkbox" id="vehicle2" name="vehicle1" value="Car">
+      <label for="vehicle2"> I have a car</label><br>
+      <input type="checkbox" id="vehicle3" name="vehicle1" value="Boat">
+      <label for="vehicle3"> I have a boat</label><br> 
+<hr><br>
   <input type="submit" value="Enviar">
 
 </form> 
