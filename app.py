@@ -49,7 +49,7 @@ def mi_form(id=None):
         filas = cursor.fetchone() # Obtiene 1 fila para procesarla
 
     #   Mis_vehiculos
-    consulta = "select id_vehiculo from persona_vh where id_persona = {id}"
+    consulta = f"select id_vehiculo from persona_vh where id_persona = {id}"
     cursor = cnx.execute(consulta)
     tmp = cursor.fetchall()
     mis_vehiculos = []
@@ -85,6 +85,15 @@ def guardar():
         consulta = "update persona set nombre = ?, apellidos = ?, dni =?, id_ocupacion=?, id_numero=? where id =?"
         cnx.execute(consulta,(nombre,apellidos,dni,ocupacion,numero,id))
         
+        # Mis_vehiculos
+        consulta = f'delete from persona_vh where id_persona = {id}'
+        cnx.execute(consulta)
+        # Se borra todos los vehiculos de una persona e inserto los nuevos
+        #-----------------------------------------
+        for v in vehiculos:
+            nuevos_vh = f"""insert into persona_vh(id_persona,id_vehiculo) values({id},{v})"""
+            cnx.execute(nuevos_vh)
+
     cnx.commit()
     cnx.close()
     redirect('/') #Esto lo que hace que vuelve a la raiz
