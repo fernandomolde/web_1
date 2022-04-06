@@ -7,8 +7,8 @@ BASE_DATOS = os.path.join(os.path.dirname(__file__),'personas.db')
 #esto le indica a template como se llama la carpeta
 TEMPLATE_PATH.append(os.path.join(os.path.dirname(__file__),'templates'))
 
-@route('/static/<filename>')    #Para implementar Css
-def server_static(filename):
+@route('/static/<filename:path>')    #Para implementar Css
+def server_static(filename):         # el path lo que hace es que te muestre la imagen
     return static_file(filename,root='./static')
 
 @route('/')
