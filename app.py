@@ -4,7 +4,7 @@ import sqlite3
 
 BASE_DATOS = os.path.join(os.path.dirname(__file__),'personas.db')
 
-#esto le indica a template como se llama la carpeta
+#Esto le indica a template como se llama la carpeta
 TEMPLATE_PATH.append(os.path.join(os.path.dirname(__file__),'templates'))
 
 @route('/static/<filename:path>')    #Para implementar Css
@@ -108,7 +108,7 @@ def borrar(id=None):
         # consulta = f'delete from persona where id ="{id}"'
         cnx.execute(consulta)
         cnx.commit()
-        cnx.close()       # Codigo para borrar
+        cnx.close()    # Codigo para borrar
     redirect('/')
 
 run(host='localhost',port=8080,debug=True)
